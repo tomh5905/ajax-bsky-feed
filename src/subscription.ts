@@ -4,23 +4,23 @@ import {
 } from './lexicon/types/com/atproto/sync/subscribeRepos'
 import { FirehoseSubscriptionBase, getOpsByType } from './util/subscription'
 
+import LanguageDetect from 'languagedetect';
+const lngDetector = new LanguageDetect();
+const allowedLanguages = ['english', 'dutch']
+
 export class FirehoseSubscription extends FirehoseSubscriptionBase {
   async handleEvent(evt: RepoEvent) {
     if (!isCommit(evt)) return
     const ops = await getOpsByType(evt)
 
-    // This logs the text of every post off the firehose.
-    // Just for fun :)
-    // Delete before actually using
-    for (const post of ops.posts.creates) {
-      console.log(post.record.text)
-    }
-
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
       .filter((create) => {
-        // only alf-related posts
-        return create.record.text.toLowerCase().includes('alf')
+        // filter posts that contain "ajax" and are written in English or Dutch
+        // more filters can be added later
+        if (create.record.text.toLowerCase().includes('ajax')) {
+          return allowedLanguages.includes(lngDetector.detect(create.record.text, 1)[0][0])
+        } else return false
       })
       .map((create) => {
         // map alf-related posts to a db row

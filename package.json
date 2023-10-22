@@ -21,9 +21,11 @@
     "better-sqlite3": "^8.3.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "js-yaml": "^4.1.0",
     "kysely": "^0.22.0",
     "languagedetect": "^2.0.0",
-    "multiformats": "^9.9.0"
+    "multiformats": "^9.9.0",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.4",

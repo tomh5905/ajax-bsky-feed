@@ -1,3 +1,5 @@
+scripts/publishFeedGen.ts
+
 # Logs
 logs
 *.log
@@ -130,6 +132,5 @@ dist
 .pnp.*
 yarn.lock
 
-# intellij
-.idea/
-*.iml
+.idea
+db.sqlite

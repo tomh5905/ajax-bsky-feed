@@ -1,3 +1,5 @@
+scripts/publishFeedGen.ts
+
 # Logs
 logs
 *.log
@@ -131,3 +133,5 @@ dist
 yarn.lock
 
 .idea
+scripts/publishFeedGen.ts
+db.sqlite

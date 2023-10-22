@@ -49,7 +49,6 @@ fetchUserDids(authorWhitelist.whitelistHandles, whitelistDids)
 const greylistDids: string[] = [];
 fetchUserDids(authorGreylist.greylistHandles, greylistDids)
 
-
 export class FirehoseSubscription extends FirehoseSubscriptionBase {
   async handleEvent(evt: RepoEvent) {
     if (!isCommit(evt)) return

@@ -6,7 +6,7 @@ import { FirehoseSubscriptionBase, getOpsByType } from './util/subscription'
 
 import LanguageDetect from 'languagedetect';
 const lngDetector = new LanguageDetect();
-const allowedLanguages = ['english', 'dutch']
+const allowedLanguages = ['dutch']
 
 export class FirehoseSubscription extends FirehoseSubscriptionBase {
   async handleEvent(evt: RepoEvent) {
@@ -16,7 +16,7 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
       .filter((create) => {
-        // filter posts that contain "ajax" and are written in English or Dutch
+        // filter posts that contain "ajax" and are written in Dutch
         // more filters can be added later
         if (create.record.text.toLowerCase().includes('ajax')) {
           return allowedLanguages.includes(lngDetector.detect(create.record.text, 1)[0][0])

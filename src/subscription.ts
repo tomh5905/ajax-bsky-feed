@@ -105,8 +105,8 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
         .map((create) => {
           // map ajax-related posts to a db row
           return {
-            uri: create.uri,
-            cid: create.cid,
+            uri: create.record.subject.uri,
+            cid: create.record.subject.cid,
             replyParent: null,
             replyRoot: null,
             indexedAt: new Date().toISOString(),

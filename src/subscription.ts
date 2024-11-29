@@ -13,7 +13,7 @@ const allowedLanguages = ['dutch']
 
 // Set the minimum number of likes for an Ajax post that is written by an author that is not
 // on the gray or whitelist.
-const likeThreshold = 1;
+const likeThreshold = 3;
 
 // Create the post store for Ajax posts written by authors not on the gray or whitelist.
 let postStore = new Map<string, number>();

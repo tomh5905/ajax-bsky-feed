@@ -1,5 +1,5 @@
 # Ajax Bluesky feed
-Hier vind je de [eerste Ajax-feed van Bluesky](https://bsky.app/profile/did:plc:gtkdyrkxncmr2qaq4lwtdrbd/feed/ajax). Een Bluesky-feed is een soort aangepast algoritme wat bepaald wat je ziet op de tijdlijn. In dit geval heb ik het gemaakt speciaal om ale boeiende Ajax-posts van Bluesky te tonen, een Ajax-bubbel zonder verdere afleiding dus.
+Hier vind je de [eerste Ajax-feed van Bluesky](https://bsky.app/profile/did:plc:gtkdyrkxncmr2qaq4lwtdrbd/feed/ajax). Een Bluesky-feed is een soort aangepast algoritme wat bepaald wat je ziet op de tijdlijn. In dit geval heb ik het gemaakt speciaal om alle boeiende Ajax-posts van Bluesky te tonen, een Ajax-bubbel zonder verdere afleiding dus.
 
 ## Hoe werkt de feed?
 In de Ajax-feed vind je 3 verschillende type berichten:

@@ -9,7 +9,7 @@ import fetch from 'node-fetch';
 
 // Set the allowed languages for the language detector.
 const lngDetector = new LanguageDetect();
-const allowedLanguages = ['dutch']
+const allowedLanguages = ['dutch', 'english'] // Maybe add english content as well?
 
 // Set the minimum number of likes for an Ajax post that is written by an author that is not
 // on the gray or whitelist.
@@ -23,7 +23,7 @@ const handleResolveUrl = 'https://bsky.social/xrpc/com.atproto.identity.resolveH
 import authorWhitelist from "./lists/authorWhitelist.json"
 import authorGreylist from "./lists/authorGreylist.json"
 import ajaxHitWords from "./lists/ajaxHitWords.json"
-
+import bannedWordList from "./lists/bannedWordList.json"
 // Fetch the user DIDs from the given user handles.
 type UserDid = {
   did: string
@@ -71,8 +71,11 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 
         // Add Ajax posts to the post store if they include words from the Ajax hit list and if they
         // are not authored by an author on the greylist or whitelist.
+        // Added filter for known words that add posts to the feed that aren't Ajax related.
         if (ajaxHitWords.hitWords.some(hitWord => create.record.text.toLowerCase().includes(hitWord)) &&
-            allowedLanguages.includes(lngDetector.detect(create.record.text, 1)[0][0])) {
+            allowedLanguages.includes(lngDetector.detect(create.record.text, 1)[0][0]) &&
+            !bannedWordList.bannedWords.some(bannedWord => create.record.text.toLowerCase().includes(bannedWord)))
+          {
           postStore.set(create.uri, 0)
         }
 

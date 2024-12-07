@@ -1,0 +1,7 @@
+{
+  "bannedWords": [
+    // Een lijst met woorden die voor vreemde toevoegingen zorgen in de feed.
+    "motorcycle",
+    "hubbard"
+  ]
+}

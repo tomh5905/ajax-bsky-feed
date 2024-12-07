@@ -9,11 +9,11 @@ import fetch from 'node-fetch';
 
 // Set the allowed languages for the language detector.
 const lngDetector = new LanguageDetect();
-const allowedLanguages = ['dutch', 'english'] // Maybe add english content as well?
+const allowedLanguages = ['dutch']
 
 // Set the minimum number of likes for an Ajax post that is written by an author that is not
 // on the gray or whitelist.
-const likeThreshold = 3;
+const likeThreshold = 2;
 
 // Create the post store for Ajax posts written by authors not on the gray or whitelist.
 let postStore = new Map<string, number>();
@@ -69,12 +69,12 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
           return ajaxHitWords.hitWords.some(hitWord => create.record.text.toLowerCase().includes(hitWord))
         }
 
-        // Add Ajax posts to the post store if they include words from the Ajax hit list and if they
-        // are not authored by an author on the greylist or whitelist.
-        // Added filter for known words that add posts to the feed that aren't Ajax related.
+        // Add Ajax posts to the post store if they include words from the Ajax hit list, no words from the banned list
+        // and if they are not authored by an author on the greylist or whitelist.
         if (ajaxHitWords.hitWords.some(hitWord => create.record.text.toLowerCase().includes(hitWord)) &&
-            allowedLanguages.includes(lngDetector.detect(create.record.text, 1)[0][0]) &&
-            !bannedWordList.bannedWords.some(bannedWord => create.record.text.toLowerCase().includes(bannedWord)))
+            !bannedWordList.bannedWords.some(bannedWord => create.record.text.toLowerCase().includes(bannedWord)) &&
+            allowedLanguages.includes(lngDetector.detect(create.record.text, 1)[0][0])
+            )
           {
           postStore.set(create.uri, 0)
         }

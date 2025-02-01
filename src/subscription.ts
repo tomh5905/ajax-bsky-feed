@@ -66,7 +66,6 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 
         // Include posts from authors on the greylist if they include a word from the Ajax hit words.
         if (greylistDids.includes(create.author)) {
-          console.log(create.record.text)
           return ajaxHitWords.hitWords.some(hitWord => create.record.text.toLowerCase().includes(hitWord))
         }
 
